@@ -15,5 +15,12 @@ app.listen(port,()=>{
 app.set("view engine","ejs");
 
 app.get("/",(req,res)=>{
-    res.render("home.ejs");
+    res.render("root.ejs");
+})
+app.get("/:username",(req,res)=>{
+    const instaData = require("./data.json");
+    let {username} = req.params;
+    const data = instaData[username];
+    console.log(data);
+    res.render("home.ejs",{data});
 })
